@@ -1,7 +1,7 @@
 import datetime
 from django.db import models
 from django.shortcuts import reverse
-from users.models import MyUser
+from users.models import User
 import os
 from django.utils.safestring import mark_safe
 
@@ -54,7 +54,7 @@ def get_album_image_path(instance, filename):
     return os.path.join(upload_to, filename)
 
 class Album(models.Model):
-    user = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=200, primary_key=True)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     album_pic = models.ImageField(upload_to=get_album_image_path, blank=True, default=get_default_album_image)
@@ -79,7 +79,7 @@ class Album(models.Model):
         return mark_safe('<img src="/../../media/%s" width="100" height="100" />' % (self.album_pic))
 
 class Album_song(models.Model):
-    user = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     num = models.IntegerField(blank=True)
     name = models.CharField(max_length=100, primary_key=True)
     album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='album')
@@ -96,7 +96,7 @@ class Album_song(models.Model):
         return self.name + '  -  '  + self.album.name
 
 class Song(models.Model):
-    user = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=100, primary_key=True)
     artist = models.ManyToManyField(Artist)
     song_pic = models.ImageField(upload_to='song_pic', blank=True, default=get_default_album_image)
@@ -116,7 +116,7 @@ class Song(models.Model):
         return self.name
 
 class Comment(models.Model):
-    user = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     text = models.CharField(max_length=100)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
