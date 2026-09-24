@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from .models import MyUser
+from .models import User
 
 class UserAdmin(BaseUserAdmin):
     list_display = ('username', 'email', 'date_joined', 'is_admin')
@@ -22,5 +22,5 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('email',)
     filter_horizontal = ()
 
-admin.site.register(MyUser, UserAdmin)
+admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)

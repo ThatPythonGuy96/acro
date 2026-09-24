@@ -5,10 +5,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.views import generic
 from django.contrib import messages
 from .forms import CreateUserForm, ProfileChangeForm
-from .models import MyUser
+from .models import User
 
 class ProfileView(generic.DetailView):
-    model = MyUser
+    model = User
     template_name = 'user/profile.html'
     context_object_name = 'user'
 
@@ -61,7 +61,7 @@ def profileedit(request, pk):
     return render(request, 'user/edit.html', context)
 
 class UserDelete(generic.DeleteView):
-    model = MyUser
+    model = User
     pk_url_kwarg = 'pk'
     template_name = 'music/delete.html'
     success_url = reverse_lazy('music:index')

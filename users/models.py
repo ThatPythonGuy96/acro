@@ -22,7 +22,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class MyUser(AbstractBaseUser):
+class User(AbstractBaseUser):
     email = models.EmailField(verbose_name='email address', max_length=40, unique=True)
     username = models.CharField(max_length=30, unique=True, primary_key=True)
     profile_pic = models.ImageField(upload_to='user', default='user/avatar-3.jpg', null=True, blank=True)

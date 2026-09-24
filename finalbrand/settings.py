@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'music.apps.MusicConfig',  # musicapp
-    'users.apps.UsersConfig',
+    'music',  # musicapp
+    'users',
     'widget_tweaks',
     # 'hitcount',
     'crispy_forms',
@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-AUTH_USER_MODEL = 'users.MyUser'
+AUTH_USER_MODEL = 'users.User'
 
 WSGI_APPLICATION = 'finalbrand.wsgi.application'
 

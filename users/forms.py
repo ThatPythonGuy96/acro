@@ -1,9 +1,9 @@
 from django import forms
-from users.models import MyUser
+from users.models import User
 
 class ProfileChangeForm(forms.ModelForm):
     class Meta:
-        model = MyUser
+        model = User
         fields = ['email', 'username', 'profile_pic']
         
 class UserCreationForm(forms.ModelForm):
@@ -13,7 +13,7 @@ class UserCreationForm(forms.ModelForm):
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
-        model = MyUser
+        model = User
         fields = ('email',)
 
     def clean_password2(self):
@@ -33,7 +33,7 @@ class UserCreationForm(forms.ModelForm):
 
 class CreateUserForm(UserCreationForm):
     class Meta:
-        model = MyUser
+        model = User
         fields = [
             'username',
             'email',
